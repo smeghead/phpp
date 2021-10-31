@@ -12,5 +12,15 @@
             "email": "smeghead7@gmail.com"
         }
     ],
-    "require": {}
+    "require": {},
+    "scripts": {
+        "test": [
+            "php vendor/phpunit/phpunit/phpunit"
+        ]
+    },
+    "autoload": {
+        "psr-4": {
+            "phpp\\": "src"
+        }
+    }
 }

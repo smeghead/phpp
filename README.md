@@ -1,4 +1,5 @@
 # phpp
+
 cli tool print class information
 
 
@@ -16,3 +17,10 @@ docker-compose run --rm php_cli bash
 ```bash
 composer update
 ```
+
+### execute tests
+
+```bash
+composer test test/
+```
+
