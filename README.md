@@ -2,10 +2,18 @@
 
 cli tool print class information
 
+## Phar Build
+
+```bash
+composer build
+```
+
+phpp.phar will generate.
+
 ## Execute
 
 ```bash
-php src/Phpp.php test/fixtures/no-namespace/product/Product.php
+php phpp.phar test/fixtures/no-namespace/product/Product.php
 ```
 
 output:

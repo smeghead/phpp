@@ -3,7 +3,8 @@
     "description": "cli tool print class information",
     "type": "command",
     "require-dev": {
-        "phpunit/phpunit": "^9.5"
+        "phpunit/phpunit": "^9.5",
+        "clue/phar-composer": "^1.2"
     },
     "license": "Apache License 2.0",
     "authors": [
@@ -12,15 +13,17 @@
             "email": "smeghead7@gmail.com"
         }
     ],
-    "require": {},
     "scripts": {
         "test": [
             "php vendor/phpunit/phpunit/phpunit"
         ],
-        "execute": [
-            "php src/Phpp.php"
+        "build": [
+            "php -d phar.readonly=off ./vendor/bin/phar-composer build ./"
         ]
     },
+    "bin": [
+        "src/Phpp.php"
+    ],
     "autoload": {
         "psr-4": {
             "phpp\\": "src"
