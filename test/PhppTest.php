@@ -14,13 +14,20 @@ final class PhppTest extends TestCase {
         $class = new \phpp\PhppReflection($filename);
 
         $this->assertNotNull($class, 'initialize PhppReflection');
-        $this->assertSame($class->getFilename(), $filename, 'get filename.');
     }
 
-    public function testLoadFile(): void {
+    public function testDump(): void {
         $filename = sprintf('%s/no-namespace/product/Product.php', $this->fixtureDir);
         $class = new \phpp\PhppReflection($filename);
 
-        $this->assertSame($class->getClassName(), 'Product', 'get classname.');
+        $data = $class->dump();
+        $this->assertSame($data->name, 'Product', 'class name.');
+        $this->assertSame($data->namespace, null, 'namespace name.');
+        $this->assertSame($data->properties[0]->name, 'name', 'type.');
+        $this->assertSame($data->properties[0]->type, 'Name', 'type.');
+        $this->assertSame($data->properties[0]->private, true, 'private.');
+        $this->assertSame($data->properties[1]->name, 'price', 'name.');
+        $this->assertSame($data->properties[1]->type, 'Price', 'type.');
+        $this->assertSame($data->properties[1]->private, true, 'private.');
     }
 }

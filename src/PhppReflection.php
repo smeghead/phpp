@@ -15,11 +15,30 @@ class PhppReflection {
         $this->class = new \ReflectionClass($className);
     }
 
-    public function getFilename(): string {
-        return $this->filename;
+    private function getClassname(): string {
+        return $this->class->getName();
     }
 
-    public function getClassname(): string {
-        return $this->class->getName();
+    private function getProperties(): array {
+        $properties = $this->class->getProperties();
+
+        $props = [];
+        foreach ($properties as $p) {
+            $props[] = (object)[
+                'name' => $p->getName(),
+                'type' => $p->getType()->getName(),
+                'private' => $p->isPrivate(),
+            ];
+        }
+        return $props;
+    }
+
+    public function dump(): \stdClass {
+        $data = (object)[
+            'name' => $this->class->getName(),
+            'package' => $this->class->getNamespaceName(),
+            'properties' => $this->getProperties(),
+        ];
+        return $data;
     }
 }
